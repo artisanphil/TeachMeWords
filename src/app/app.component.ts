@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { ImportPage } from '../pages/import/import';
 import { ListPage } from '../pages/list/list';
 
 @Component({
@@ -33,6 +34,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      var doImport = true;
+      if (doImport) {
+        console.log("do import");
+        this.rootPage = ImportPage;
+      } else {
+        this.rootPage = HomePage;
+      }      
     });
   }
 
