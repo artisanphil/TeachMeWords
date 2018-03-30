@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ImportPage } from '../pages/import/import';
 import { ListPage } from '../pages/list/list';
 
+declare var BoxOfQuestions: any;
+declare var LWdb: any;
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -35,14 +38,25 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      var doImport = true;
-      if (doImport) {
-        console.log("do import");
-        this.rootPage = ImportPage;
-      } else {
+      if (this.dataIsImported()) {
         this.rootPage = HomePage;
+      } else {
+        this.rootPage = ImportPage;
       }      
     });
+  }
+
+  dataIsImported() {
+    var lw = BoxOfQuestions(LWdb('lw-storage'));
+    var wordlist = lw.db.allWords(); 
+    console.log("wordlist length: " + wordlist.length);
+    if(wordlist.length > 0) {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
   openPage(page) {

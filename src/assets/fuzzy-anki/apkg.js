@@ -48,7 +48,10 @@ function loadIntoStorage(datatable, columns) {
 			{
 				wordlist[i]['tags'] = datatable[i][data].trim();
 			}
-
+			if(data == "pronunciation")
+			{
+				wordlist[i]['pronunciation'] = datatable[i][data].trim();
+			}
 		}
 	}
 
