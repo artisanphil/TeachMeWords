@@ -1,8 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { Zip } from '@ionic-native/zip';
 import { getComponent } from '@angular/core/src/linker/component_factory_resolver';
 declare var window;
+declare var ankiBinaryToTable: any;
+
 /**
  * Generated class for the ImportPage page.
  *
@@ -17,7 +21,7 @@ declare var window;
 })
 export class ImportPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private file: File, private elRef: ElementRef, renderer: Renderer2) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private transfer: FileTransfer, private file: File, private zip: Zip, private elRef: ElementRef, renderer: Renderer2) {
     renderer.listen(elRef.nativeElement, 'click', (event) => {
       this.openfile(event.srcElement.value);
     })
@@ -96,8 +100,8 @@ export class ImportPage {
                 //msg += "<button myimport class=importButton (click)='openfile(" + i + ");'>Import</button>";
                 msg += "<button myimport value=" + i + " class=importButton>Import</button>";
                 msg += "</li>";
-                var categories = document.getElementById("categories");
-                categories.innerHTML += msg;
+                var importFiles = document.getElementById("importFiles");
+                importFiles.innerHTML += msg;
                 //console.log(msg);
               }
             }
@@ -128,15 +132,13 @@ export class ImportPage {
   openfile(i)
   {
     var myfile = (<HTMLInputElement>document.getElementById('filenr' + i)).value
+    var that = this;
     console.log(myfile);
-    /*
-    var categories = document.getElementById("categories");
-    categories.innerHTML = "";
+    
     ankiBinaryToTable(myfile, function() {
-      categories.innerHTML = "";
-      console.log(wordlist);
-      //displayLessons();
+      //console.log(wordlist);
+      that.navCtrl.push('HomePage');
     });
-    */
+    
   }    
 }

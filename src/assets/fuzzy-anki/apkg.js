@@ -230,7 +230,7 @@ function ankiBinaryToTable(ankiArray, callback) {
 	unzipDir = cordova.file.cacheDirectory + "unzipped";
 	console.log("unzip directory: " + unzipDir);
 	zip.unzip(ankiArray, unzipDir, function(x){
-
+	
 		listDir(unzipDir, function(filenames ){
 
 			if (filenames.indexOf("collection.anki2") >= 0) {

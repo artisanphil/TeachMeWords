@@ -10,7 +10,9 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ImportPageModule } from '../pages/import/import.module';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { Zip } from '@ionic-native/zip';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { File } from '@ionic-native/file';
     StatusBar,
     SplashScreen,
     File,
+    FileTransfer,
+    Zip,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
