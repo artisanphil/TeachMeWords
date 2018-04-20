@@ -252,6 +252,7 @@ function ankiBinaryToTable(ankiArray, callback) {
 					}
 					else
 					{
+						console.log("hide progress bar");
 						progressbar.display.style = "none";
 
 						callback();

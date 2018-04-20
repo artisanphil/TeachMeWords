@@ -16,6 +16,12 @@ export class HomePage {
 
   }
 
+  navigateToChooseMode() : void {
+    this.navCtrl.push('ChooseModePage', {
+      message: "Hello from the HomePage!"
+    });
+  }  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImportPage');
     this.displayLessons();
@@ -48,9 +54,11 @@ export class HomePage {
           else {
             var lessonContentSample = "<span class=answerText>" + wordlist[i].translate + "</span>";
           }
-          var catButton = "<a href=\"choose-mode.html?tag=" + lesson + "\" style=\"underline: none;\"><figure class=category><div>" + lessonContentSample + "</div>";
+          var catButton = ""; //"<a href=\"choose-mode.html?tag=" + lesson + "\" style=\"underline: none;\">";
+          catButton += "<figure class=category (click)=\"navigateToChooseMode()\"><div>" + lessonContentSample + "</div>";
           catButton += "<figcaption>" + lesson + "</figcaption>";
-          catButton += "</figure></a>";
+          catButton += "</figure>";
+          catButton += "</a>";
           categories.innerHTML += catButton;
         }
       }

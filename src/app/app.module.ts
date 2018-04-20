@@ -17,8 +17,8 @@ import { Zip } from '@ionic-native/zip';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     ImportPage,
+    HomePage,
     ListPage
   ],
   imports: [

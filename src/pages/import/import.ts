@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Zip } from '@ionic-native/zip';
@@ -29,6 +30,7 @@ export class ImportPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImportPage');
+    document.getElementById("importMessage").innerHTML = "No cards found. Please find and open your .apkg file with LearnWords to import the lessons.";
     this.displayImport();
   }  
 
@@ -134,10 +136,14 @@ export class ImportPage {
     var myfile = (<HTMLInputElement>document.getElementById('filenr' + i)).value
     var that = this;
     console.log(myfile);
+    document.getElementById("importMessage").innerHTML = "Importing...";
+    var importFiles = document.getElementById("importFiles");
+    importFiles.innerHTML = "";
     
     ankiBinaryToTable(myfile, function() {
       //console.log(wordlist);
-      that.navCtrl.push('HomePage');
+      console.log("push to homepage");
+      that.navCtrl.push(HomePage);
     });
     
   }    
