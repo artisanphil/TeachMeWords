@@ -12,6 +12,8 @@ declare var LWdb: any;
 })
 export class HomePage {
 
+  arrLesson: any;
+
   constructor(public navCtrl: NavController, private file: File) {
 
   }
@@ -28,6 +30,7 @@ export class HomePage {
   }  
 
   displayLessons() {
+
     var lw = BoxOfQuestions(LWdb('lw-storage'));
 
     var tag = "Nomen";
@@ -36,7 +39,8 @@ export class HomePage {
 
     console.log("wordlist:");
     console.log(wordlist);
-    var arrLesson = [];
+    //var arrLesson = [];
+    this.arrLesson = [];
     var categories = document.getElementById("categories");
     if(wordlist.length > 0) {
       
@@ -45,8 +49,8 @@ export class HomePage {
       
       for(var i=0;i<wordlist.length;i++) {
         var lesson = wordlist[i].tags.split(",")[0];
-        if(arrLesson.indexOf(lesson) === -1) {
-          arrLesson.push(lesson);
+        if(this.arrLesson.indexOf(lesson) === -1) {
+          this.arrLesson.push(lesson);
           //var catButton = "<div class=category>";
           if(wordlist[i].translateIsImage) {
             var lessonContentSample = "<img src='" + this.file.dataDirectory + "media/" + wordlist[i].translate +"'>";
