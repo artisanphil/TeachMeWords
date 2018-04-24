@@ -12,7 +12,7 @@ declare var LWdb: any;
 })
 export class HomePage {
 
-  arrLesson: any;
+  lessonButtons: any;
 
   constructor(public navCtrl: NavController, private file: File) {
 
@@ -39,8 +39,8 @@ export class HomePage {
 
     console.log("wordlist:");
     console.log(wordlist);
-    //var arrLesson = [];
-    this.arrLesson = [];
+    var arrLesson = [];
+    this.lessonButtons = [];
     var categories = document.getElementById("categories");
     if(wordlist.length > 0) {
       
@@ -49,8 +49,8 @@ export class HomePage {
       
       for(var i=0;i<wordlist.length;i++) {
         var lesson = wordlist[i].tags.split(",")[0];
-        if(this.arrLesson.indexOf(lesson) === -1) {
-          this.arrLesson.push(lesson);
+        if(arrLesson.indexOf(lesson) === -1) {
+          arrLesson.push(lesson)
           //var catButton = "<div class=category>";
           if(wordlist[i].translateIsImage) {
             var lessonContentSample = "<img src='" + this.file.dataDirectory + "media/" + wordlist[i].translate +"'>";
@@ -58,12 +58,16 @@ export class HomePage {
           else {
             var lessonContentSample = "<span class=answerText>" + wordlist[i].translate + "</span>";
           }
+          /*
           var catButton = ""; //"<a href=\"choose-mode.html?tag=" + lesson + "\" style=\"underline: none;\">";
           catButton += "<figure class=category (click)=\"navigateToChooseMode()\"><div>" + lessonContentSample + "</div>";
           catButton += "<figcaption>" + lesson + "</figcaption>";
           catButton += "</figure>";
           catButton += "</a>";
           categories.innerHTML += catButton;
+          */
+          this.lessonButtons.push({lessonName: lesson, lessonContent: lessonContentSample});
+
         }
       }
     }

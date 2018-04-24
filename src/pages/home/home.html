@@ -10,7 +10,12 @@
 <ion-content padding>
   <h3>Lessons</h3>
   <div id=categories></div>
-  <h1 *ngFor="let lesson of arrLesson">{{lesson}}</h1>
+  <div *ngFor="let lesson of lessonButtons">
+    <figure class=category (click)="navigateToChooseMode()"><div ng-bind-html="lesson.lessonContent"></div>
+      <figcaption>{{lesson.lessonName}}</figcaption>
+    </figure>
+</div>
+
   <div>
     <figure class="category" (click)="navigateToChooseMode()"><div><span class="answerText">test</span></div><figcaption>4</figcaption></figure>
   </div>
