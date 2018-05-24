@@ -11,14 +11,11 @@
   <h3>Lessons</h3>
   <div id=categories></div>
   <div *ngFor="let lesson of lessonButtons">
-    <figure class=category (click)="navigateToChooseMode()"><div ng-bind-html="lesson.lessonContent"></div>
+    <figure class=category (click)="navigateToChooseMode(lesson.lessonName)"><div [innerHTML]="lesson.lessonContent"></div>
       <figcaption>{{lesson.lessonName}}</figcaption>
     </figure>
 </div>
 
-  <div>
-    <figure class="category" (click)="navigateToChooseMode()"><div><span class="answerText">test</span></div><figcaption>4</figcaption></figure>
-  </div>
   <div>
     <button id=reviewButton class="category" name="review" style="max-width:400px; display: none;"><img src="media/symbols/review.png" style="padding: 0px;"></button>
   </div>

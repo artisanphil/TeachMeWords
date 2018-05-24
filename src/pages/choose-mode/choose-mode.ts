@@ -15,12 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChooseModePage {
 
+  lesson: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChooseModePage');
-    console.log(this.navParams.get('message'));
+    console.log(this.navParams.get('lesson'));
+    this.lesson = this.navParams.get('lesson');
   }
+
+  navigateToLearnMode(lesson) : void {
+    this.navCtrl.push('LearnModePage', {
+      tag: lesson
+    });
+  }  
 
 }

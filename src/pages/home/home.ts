@@ -15,12 +15,12 @@ export class HomePage {
   lessonButtons: any;
 
   constructor(public navCtrl: NavController, private file: File) {
-
+    
   }
 
-  navigateToChooseMode() : void {
+  navigateToChooseMode(tag) : void {
     this.navCtrl.push('ChooseModePage', {
-      message: "Hello from the HomePage!"
+      lesson: tag
     });
   }  
 
@@ -58,20 +58,12 @@ export class HomePage {
           else {
             var lessonContentSample = "<span class=answerText>" + wordlist[i].translate + "</span>";
           }
-          /*
-          var catButton = ""; //"<a href=\"choose-mode.html?tag=" + lesson + "\" style=\"underline: none;\">";
-          catButton += "<figure class=category (click)=\"navigateToChooseMode()\"><div>" + lessonContentSample + "</div>";
-          catButton += "<figcaption>" + lesson + "</figcaption>";
-          catButton += "</figure>";
-          catButton += "</a>";
-          categories.innerHTML += catButton;
-          */
-          this.lessonButtons.push({lessonName: lesson, lessonContent: lessonContentSample});
+          this.lessonButtons.push({lessonName: lesson, lessonContent: lessonContentSample}); 
 
         }
       }
     }
-   
+    
     lw.db.loadWords(wordlist);
     
   }

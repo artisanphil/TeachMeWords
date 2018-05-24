@@ -23,6 +23,9 @@ article {height: 100%;}
 button:focus {
   outline: none;
 }
+.ionicContent {
+  background-color:#EEEEEE;
+}
 .answerText {
   font-size: calc((10vw + 10vh) / 2);
   color: darkblue;
@@ -37,9 +40,11 @@ button:focus {
   margin: 5px 0px; 
   min-height: 50px;
 }
+/*
 #chooseButtons > div:last-child {
   flex: 1;
 }
+*/
 #chooseButtons .optionBtn {
   min-height: 50px;
 }
@@ -102,28 +107,35 @@ button:focus {
   height: 90%;
   width: 100%;
   text-align: center;
-  overflow:hidden;
+  /* overflow:hidden; */
 }
 #back, #forward {
-  width:45%;
+  width:50%;
+}
+#back {
+  padding-left: 2%;
+  text-align: left;
+  float:left;  
+}
+#forward {
+  padding-right: 2%;
+  float: left;
+  text-align: right;
 }
 .left {
 	float:left;
   width: 47%;
   height: 100%;
-	/* max-width:300px; */
 	text-align: center;
   margin-right: 1%;
   margin-left: 2%;
 }
 .right {
-	 /* float: left; */
 	 overflow:hidden;
    width: 48%;
    height: 100%;
    margin-right: 2%;
    margin-left: 1%;
-	 /* max-width: 300px; */
 	 text-align: center;
 }
 .backforwardBtn {
@@ -134,9 +146,16 @@ button:focus {
 }
 .optionBtn {
   width: 100%;
+  max-width: 400px;
   height: 100%;
   font-size: 150%;
   background-color: #FFFFFF;
+  background-repeat: no-repeat !important;
+  background-position: center !important; 
+  background-size: auto 100% !important;
+  border-color: #CCCCCC;
+  border-width: 1px;
+  border-style: solid;
 }
 /* displays a cross for the wrong answer
 <button type="button" class="optionBtn wrong">
@@ -156,8 +175,11 @@ button:focus {
   box-shadow: none;
   border-style: solid;
 }
-
-.optionCell { margin-bottom: 1%; }
+.optionCell { 
+    margin-bottom: 1%; 
+    height: 40%;
+}
+/*
 .optionRow {
   height: 45%;
   display: inline-block;
@@ -167,7 +189,9 @@ button:focus {
 .optionRow.Learn {
   height: 35%;
 }
+*/
 @media screen and (orientation:portrait) {
+  
    .left {
    float: left;
     width: 100%;
@@ -184,6 +208,7 @@ button:focus {
     margin-left: 0px;
     margin-bottom: 5px;
   }
+  /*
   .optionRow {
     width: 100%;
     height: 45%;
@@ -192,13 +217,15 @@ button:focus {
   .optionRow.Learn {
     height: 45%;
   }
-
+  */
   .optionCell {
-    height: 50%;
+    height: 23%;
   }
+  
   .optionBtn {
     height: 100%;
   }
+  
   #back, #forward {
     margin-top: 2%;
   }

@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>choose-mode</ion-title>
+    <ion-title>LearnWords</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<div id=chooseButtons>
+  <div>
+    <button id=learnButton class="optionBtn" name="learn" (click)="navigateToLearnMode(lesson)" style="background: url(assets/imgs/learn.png);"></button>
+  </div>
+  <div>
+    <button id=practiceButton class="optionBtn" name="practice" style="background: url(assets/imgs/practice.png);"></button>
+  </div>
+</div>
 </ion-content>
