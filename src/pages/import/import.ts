@@ -143,7 +143,8 @@ export class ImportPage {
     ankiBinaryToTable(myfile, function() {
       //console.log(wordlist);
       console.log("push to homepage");
-      that.navCtrl.push(HomePage);
+      //that.navCtrl.push(HomePage);
+      that.navCtrl.setRoot(HomePage);
     });
     
   }    

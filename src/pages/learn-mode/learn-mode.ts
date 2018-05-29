@@ -105,16 +105,24 @@ export class LearnModePage {
               var card = "<span class=answerText>" + questionObj.translate + "</span>";
             }
 
-            console.log("i: " + i + ":" + questionObj.translate);
-            //arrOptionButtons[i].innerHTML = card; //'<img class=imgAnswer src="' + mediaPath + questionObj.translate + '">';
-            //arrOptionButtons[i].id = w.toString(); 
-            //this.arrWords[i] = w;
             this.arrWords.push({id: w.toString(), content: card}); 
       }
       else {
         ////arrOptionButtons[i].style.visibility = "hidden";
       }
     }
+
+  var backButton = document.getElementById("back");
+  
+  if(wordNumber == 1)
+  {
+    backButton.style.visibility = 'hidden';
+  }
+  else
+  {
+    backButton.style.visibility = 'visible';
+  }
+  
   var nextButton = document.getElementById("forward");
 
   if((wordNumber + 4) > arrOptions.length)
