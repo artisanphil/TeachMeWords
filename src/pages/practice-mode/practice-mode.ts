@@ -8,7 +8,7 @@ var lw = BoxOfQuestions(LWdb('lw-storage'));
 var wordNumber = 1;
 
 /**
- * Generated class for the LearnModePage page.
+ * Generated class for the PracticeModePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,65 +16,33 @@ var wordNumber = 1;
 
 @IonicPage()
 @Component({
-  selector: 'page-learn-mode',
-  templateUrl: 'learn-mode.html',
+  selector: 'page-practice-mode',
+  templateUrl: 'practice-mode.html',
 })
-export class LearnModePage {
+export class PracticeModePage {
 
-  arrWords: any;
   lessonName: any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LearnModePage');
+    console.log('ionViewDidLoad PracticeModePage');
+
     var tag = this.navParams.get('tag');
     this.lessonName = tag;
-    //lw = BoxOfQuestions(LWdb('lw-storage'));
+
     this.showRepeat(tag);
   }
 
-  listen(clickedOption) : void
-  {
-    var wordID = clickedOption.currentTarget.id;
-    var clickedWord = lw.getWord(wordID);
-    
-    var mediaPath = LWutils.getMediaPath(clickedWord.importedFromAPKG);
-    
-    //doesn't work with ionic live-reload https://github.com/ionic-team/ionic-cli/issues/287
-    LWutils.playAudio(mediaPath + clickedWord.word);
-    
-  }
+  showRepeat(tag) {
 
-  back(lesson) :  void {
-
-    if(wordNumber > 1){
-      wordNumber = wordNumber - 4;
-      this.showRepeat(lesson);
-    }
-    else {
-      window.location.href = "choose-mode.html?tag=" + lesson;
-    }
-  }  
-  forward(lesson) : void {
-
-    if(wordNumber < lw.db.numberOfWords())
-    {
-      wordNumber = wordNumber + 4;
-      this.showRepeat(lesson);
-    }
-  }
-
-  showRepeat(tag)
-  {
-    //var tag = LWutils.getParameterByName("tag", window.location);
+    var tag = LWutils.getParameterByName("tag", window.location);
 
     var wordsFilteredByTag = lw.allWordsFilteredByTag(tag);
 
     var arrOptionButtons = document.getElementsByClassName("optionBtn");
     var arrOptions = lw.getLearnCards(tag);
-    this.arrWords = [];
 
     //console.log(arrOptions);
 
@@ -88,7 +56,7 @@ export class LearnModePage {
         numberOfOptions = arrOptions.length;
       }
     }
-    console.log("showRepeat: " + numberOfOptions);
+    console.log(numberOfOptions);
     for (var i = 0; i < numberOfOptions; i++) {
       var w = wordNumber + i - 1;
       var questionObj = lw.getWord(w);
@@ -96,7 +64,7 @@ export class LearnModePage {
       {
           var mediaPath = LWutils.getMediaPath(questionObj.importedFromAPKG);
 
-            ////arrOptionButtons[i].style.visibility = "visible";
+            //arrOptionButtons[i].style.visibility = "visible";
             if(questionObj.translateIsImage) {
               var card = "<img class=imgAnswer src='" + mediaPath + questionObj.translate +"'>";
             }
@@ -104,24 +72,15 @@ export class LearnModePage {
               var card = "<span class=answerText>" + questionObj.translate + "</span>";
             }
 
-            this.arrWords.push({id: w.toString(), content: card}); 
+            arrOptionButtons[i].innerHTML = card; //'<img class=imgAnswer src="' + mediaPath + questionObj.translate + '">';
+            //arrOptionButtons[i].id = w; 
       }
       else {
-        ////arrOptionButtons[i].style.visibility = "hidden";
+        //arrOptionButtons[i].style.visibility = "hidden";
       }
     }
 
-  var backButton = document.getElementById("back");
-  
-  if(wordNumber == 1)
-  {
-    backButton.style.visibility = 'hidden';
-  }
-  else
-  {
-    backButton.style.visibility = 'visible';
-  }
-  
+    /*
   var nextButton = document.getElementById("forward");
 
   if((wordNumber + 4) > arrOptions.length)
@@ -131,7 +90,7 @@ export class LearnModePage {
   else {
     nextButton.style.visibility = 'visible';
   }
-
+  */
 }  
 
 }

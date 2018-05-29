@@ -102,6 +102,10 @@ button:focus {
 }
 #listen {
   height: 100%;
+  width: 50%;
+  background-repeat: no-repeat !important;
+  background-position: center !important; 
+  background-size: auto 100% !important;
 }
 #optionsForAnswers {
   height: 90%;
