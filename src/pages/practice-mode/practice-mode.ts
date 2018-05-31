@@ -6,6 +6,7 @@ declare var LWdb: any;
 declare var LWutils: any;
 var lw = BoxOfQuestions(LWdb('lw-storage'));
 var wordNumber = 1;
+var questionObj = null;
 
 /**
  * Generated class for the PracticeModePage page.
@@ -21,6 +22,7 @@ var wordNumber = 1;
 })
 export class PracticeModePage {
 
+  arrOptionButtons: any;
   lessonName: any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -30,67 +32,106 @@ export class PracticeModePage {
     console.log('ionViewDidLoad PracticeModePage');
 
     var tag = this.navParams.get('tag');
+    var mode = this.navParams.get('mode');
     this.lessonName = tag;
 
-    this.showRepeat(tag);
+    this.showRepeat(tag, mode);
   }
 
-  showRepeat(tag) {
+  listen() : void
+  {
+    if(questionObj != null)
+    {
+      var mediaPath = LWutils.getMediaPath(questionObj['importedFromAPKG']);
+      LWutils.playAudio(mediaPath + questionObj['word']);
+      console.log("data/media/" + questionObj['word']);
+    }
+  }
 
-    var tag = LWutils.getParameterByName("tag", window.location);
+  showRepeat(tag, mode) {
 
     var wordsFilteredByTag = lw.allWordsFilteredByTag(tag);
 
-    var arrOptionButtons = document.getElementsByClassName("optionBtn");
-    var arrOptions = lw.getLearnCards(tag);
+    this.arrOptionButtons = [];
 
-    //console.log(arrOptions);
-
-    var numberOfOptions = 4;
-    if(arrOptions.length < numberOfOptions)
+    questionObj = lw.question(tag, mode);
+    console.log(tag + "#" + mode);
+    console.log("questionObj");
+    console.log(questionObj);
+    if(typeof questionObj !== 'undefined')
     {
-      if(wordNumber > 4) {
-        numberOfOptions = arrOptions.length - (wordNumber + 4);
-      }
-      else {
-        numberOfOptions = arrOptions.length;
-      }
-    }
-    console.log(numberOfOptions);
-    for (var i = 0; i < numberOfOptions; i++) {
-      var w = wordNumber + i - 1;
-      var questionObj = lw.getWord(w);
-      if(questionObj != null)
+      var correctAnswer = lw.answer(tag, mode);
+
+      var mediaPathSound = LWutils.getMediaPath(questionObj['importedFromAPKG']);
+      console.log("playAudio: " + mediaPathSound + questionObj.word);
+      LWutils.playAudio(mediaPathSound + questionObj.word);
+
+      var arrOptionButtons = document.getElementsByClassName("optionBtn");
+      var arrOptions = lw.getAnswerOptions(tag, mode);
+
+      var numberOfOptions = 4;
+      if(arrOptions.length < numberOfOptions)
       {
-          var mediaPath = LWutils.getMediaPath(questionObj.importedFromAPKG);
+        if(wordNumber > 4) {
+          numberOfOptions = arrOptions.length - (wordNumber + 4);
+        }
+        else {
+          numberOfOptions = arrOptions.length;
+        }
+      }      
+      for (var i = 0; i < numberOfOptions; i++) {
 
-            //arrOptionButtons[i].style.visibility = "visible";
-            if(questionObj.translateIsImage) {
-              var card = "<img class=imgAnswer src='" + mediaPath + questionObj.translate +"'>";
-            }
-            else {
-              var card = "<span class=answerText>" + questionObj.translate + "</span>";
-            }
+        if(arrOptions[i])
+        {
+          var mediaPathImg = LWutils.getMediaPath(arrOptions[i]['importedFromAPKG']);
 
-            arrOptionButtons[i].innerHTML = card; //'<img class=imgAnswer src="' + mediaPath + questionObj.translate + '">';
-            //arrOptionButtons[i].id = w; 
+          if(arrOptions[i]['translateIsImage']) {
+            var card = "<img class=imgAnswer src='" + mediaPathImg + arrOptions[i]['translate'] +"'>";
+          }
+          else {
+            var card = "<span class=answerText>" + arrOptions[i]['translate'] + "</span>";
+          }
+
+          this.arrOptionButtons.push({id: arrOptions[i]['_id'], content: card}); 
+          //arrOptionButtons[i].innerHTML = card; //'<img class=imgAnswer src="' + mediaPathImg + arrOptions[i]['translate'] + '">';
+          //arrOptionButtons[i].id = arrOptions[i]['_id'];
+          //arrOptionButtons[i].style.opacity = "1";
+        }
       }
-      else {
-        //arrOptionButtons[i].style.visibility = "hidden";
+
+    }
+    else
+    {
+      if(mode == "practice")
+      {
+        location.href='practice.html?tag=' + tag + '&mode=practiceagain';
+      }
+      else
+      {
+        var LWarea = document.getElementById("learnWords2-area");
+        LWarea.style.display = "none";
+
+        var message = document.getElementById("message");
+        var msg = "";
+        if(mode == "review")
+        {
+          msg += "<div style=\"height:100%; vertical-align:center;\">";
+          msg += "<img src=\"media/symbols/finished.png\">";
+          msg += "</div>";
+        }
+        else
+        {
+          msg += "<br><br>";
+          //msg += "<span class=answerText>" + LWutils.getPoints(wordsFilteredByTag) + "</span>";
+        }
+        msg += "<br><br>";
+        msg += "<img src=\"media/symbols/home.png\" onclick=\"window.location.replace('index.html');\" style=\"max-width:50%; max-height:50%; position: fixed; left: 40%; bottom: 0px;\">";
+
+        message.innerHTML = msg;
+        message.style.display = "block";
       }
     }
 
-    /*
-  var nextButton = document.getElementById("forward");
-
-  if((wordNumber + 4) > arrOptions.length)
-  {
-    nextButton.style.visibility = 'hidden';
-  }
-  else {
-    nextButton.style.visibility = 'visible';
-  }
-  */
-}  
+  }  
 
 }

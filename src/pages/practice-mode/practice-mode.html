@@ -15,22 +15,16 @@
 
 <ion-content padding class="ionicContent">
     <div id="learnWords2-area">
-      <div id="question">
-          <audio id="audio_play" autoplay>
-             <source src="#" type="audio/mpeg">
-             Your browser does not support the audio element.
-           </audio>
-           <button ion-button medium color="light" id=listen style="background: url(assets/imgs/listen.png)">
-          </button>
-        </div>
       <div id="optionsForAnswers">
-        <div class=optionRow>
-          <div class="optionCell left"><button type="button" class="optionBtn"></button></div>
-          <div class="optionCell right"><button type="button" class="optionBtn"></button></div>
-        </div>
-        <div class=optionRow>
-          <div class="optionCell left"><button type="button" class=optionBtn></button></div>
-          <div class="optionCell right"><button type="button" class="optionBtn"></button></div>
+        <div id="question">
+            <audio id="audio_play" autoplay>
+                <source src="#" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+              <button ion-button medium color="light" id=listen (click)="listen($event)" style="background: url(assets/imgs/listen.png)"></button>
+          </div>
+        <div class="optionCell left" *ngFor="let optionButton of arrOptionButtons"> 
+          <button id="{{optionButton.id}}" type="button" class="optionBtn" (click)="listen($event)" [innerHTML]="optionButton.content"></button>
         </div>
       </div>
     </div>

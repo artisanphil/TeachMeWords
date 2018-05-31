@@ -72,7 +72,6 @@ export class LearnModePage {
 
     var wordsFilteredByTag = lw.allWordsFilteredByTag(tag);
 
-    var arrOptionButtons = document.getElementsByClassName("optionBtn");
     var arrOptions = lw.getLearnCards(tag);
     this.arrWords = [];
 
@@ -96,18 +95,15 @@ export class LearnModePage {
       {
           var mediaPath = LWutils.getMediaPath(questionObj.importedFromAPKG);
 
-            ////arrOptionButtons[i].style.visibility = "visible";
+            var card;
             if(questionObj.translateIsImage) {
-              var card = "<img class=imgAnswer src='" + mediaPath + questionObj.translate +"'>";
+              card = "<img class=imgAnswer src='" + mediaPath + questionObj.translate +"'>";
             }
             else {
-              var card = "<span class=answerText>" + questionObj.translate + "</span>";
+              card = "<span class=answerText>" + questionObj.translate + "</span>";
             }
 
             this.arrWords.push({id: w.toString(), content: card}); 
-      }
-      else {
-        ////arrOptionButtons[i].style.visibility = "hidden";
       }
     }
 

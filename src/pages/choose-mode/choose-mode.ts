@@ -34,7 +34,8 @@ export class ChooseModePage {
 
   navigateToPracticeMode(lesson) : void {
     this.navCtrl.push('PracticeModePage', {
-      tag: lesson
+      tag: lesson,
+      mode: "practice"
     });
   }    
 

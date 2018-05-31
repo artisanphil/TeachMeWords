@@ -98,11 +98,13 @@ button:focus {
   text-align: center;
 }
 #question {
-  height: 10%;
+ height: 12%;
+ margin-bottom: 3%; 
 }
 #listen {
-  height: 100%;
-  width: 50%;
+  height: 100px;
+  max-height: 100%;
+  width: 150px;
   background-repeat: no-repeat !important;
   background-position: center !important; 
   background-size: auto 100% !important;
