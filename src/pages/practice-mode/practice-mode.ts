@@ -5,8 +5,11 @@ declare var BoxOfQuestions: any;
 declare var LWdb: any;
 declare var LWutils: any;
 var lw = BoxOfQuestions(LWdb('lw-storage'));
-var wordNumber = 1;
+var correctAnswer = "";
+var mode = "";
 var questionObj = null;
+var tag = "";
+var wordNumber = 1;
 
 /**
  * Generated class for the PracticeModePage page.
@@ -22,6 +25,8 @@ var questionObj = null;
 })
 export class PracticeModePage {
 
+  public buttonColor: string = '#FFFFFF';
+
   arrOptionButtons: any;
   lessonName: any; 
 
@@ -30,10 +35,22 @@ export class PracticeModePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticeModePage');
+  }
 
-    var tag = this.navParams.get('tag');
-    var mode = this.navParams.get('mode');
+
+  ionViewDidEnter()
+  {
+    console.log("entered PracticeModePage");
+
+    tag = this.navParams.get('tag');
+    mode = this.navParams.get('mode');
     this.lessonName = tag;
+
+    
+    if(mode == "practice")
+    {
+      lw.resetQueried();
+    }    
 
     this.showRepeat(tag, mode);
   }
@@ -47,7 +64,52 @@ export class PracticeModePage {
       console.log("data/media/" + questionObj['word']);
     }
   }
+  optionClick(clickedOption) : void
+  {    
+    if(clickedOption.buttonColor === '#FFFFFF') { 
+      clickedOption.buttonColor = '#FFF0F5'
+    } else {
+      clickedOption.buttonColor = '#FFFFFF'
+    }
 
+    var wordID = clickedOption.currentTarget.id;
+
+    var w = lw.findID(wordID);
+    var clickedWord = lw.getWord(w);
+    var myButton = document.getElementById(wordID);
+
+    var correct = false;
+    if(myButton)
+    {
+      console.log("clicked word: " + clickedWord.translate);
+      if(clickedWord.translate == correctAnswer)
+      {
+          correct = true;
+
+          myButton.classList.add("correct");
+          lw.moveQuestionForward();
+      }
+      else {
+          myButton.classList.add("wrong");
+
+          lw.moveQuestionBackwards();
+      }
+      
+      setTimeout(()=>{  
+        if(correct)
+        {
+          console.log("removeCorrect " + wordID);
+          myButton.classList.remove("correct");
+          this.showRepeat(tag, mode);
+        }
+        else {
+          this.listen();
+          myButton.classList.remove("wrong");
+          myButton.style.opacity = "0.3";
+        }
+      }, 2000);
+    }
+}
   showRepeat(tag, mode) {
 
     var wordsFilteredByTag = lw.allWordsFilteredByTag(tag);
@@ -56,11 +118,14 @@ export class PracticeModePage {
 
     questionObj = lw.question(tag, mode);
     console.log(tag + "#" + mode);
-    console.log("questionObj");
-    console.log(questionObj);
+    console.log("questionObj: " + questionObj);
+    
     if(typeof questionObj !== 'undefined')
     {
-      var correctAnswer = lw.answer(tag, mode);
+      correctAnswer = lw.answer(tag, mode);
+
+      console.log("correctAnswer");
+      console.log(correctAnswer);
 
       var mediaPathSound = LWutils.getMediaPath(questionObj['importedFromAPKG']);
       console.log("playAudio: " + mediaPathSound + questionObj.word);
@@ -93,9 +158,6 @@ export class PracticeModePage {
           }
 
           this.arrOptionButtons.push({id: arrOptions[i]['_id'], content: card}); 
-          //arrOptionButtons[i].innerHTML = card; //'<img class=imgAnswer src="' + mediaPathImg + arrOptions[i]['translate'] + '">';
-          //arrOptionButtons[i].id = arrOptions[i]['_id'];
-          //arrOptionButtons[i].style.opacity = "1";
         }
       }
 
@@ -104,7 +166,13 @@ export class PracticeModePage {
     {
       if(mode == "practice")
       {
-        location.href='practice.html?tag=' + tag + '&mode=practiceagain';
+        this.showRepeat(tag, "practiceagain");
+        /*
+        this.navCtrl.push('PracticeModePage', {
+          tag: tag,
+          mode: "practiceagain"
+        });
+        */    
       }
       else
       {

@@ -237,11 +237,12 @@ function ankiBinaryToTable(ankiArray, callback) {
 				//var plain = unzip.decompress("collection.anki2");
 				//zip.unzip("/sdcard/Download/unzipped/collection.anki2", "/sdcard/Download/unzipped/collection", function(x, options){
 				getFileText(unzipDir + "/collection.anki2", "binary", function(plain) {
-
+					console.log("sqlToTable");
 					sqlToTable(plain);
 
 					if (filenames.indexOf("media") >= 0) {
 						//var plainmedia = unzip.decompress("media");
+						console.log(unzipDir + "/media");
 						getFileText(unzipDir + "/media", "text", function(plainmedia) {
 							parseMedia(JSON.parse(plainmedia),"",filenames, function() {
 								console.log("import complete");

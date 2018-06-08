@@ -24,7 +24,7 @@
               <button ion-button medium color="light" id=listen (click)="listen($event)" style="background: url(assets/imgs/listen.png)"></button>
           </div>
         <div class="optionCell left" *ngFor="let optionButton of arrOptionButtons"> 
-          <button id="{{optionButton.id}}" type="button" class="optionBtn" (click)="listen($event)" [innerHTML]="optionButton.content"></button>
+          <button ion-button id="{{optionButton.id}}" class="optionBtn" (click)="optionClick($event)" [style.background-color]="buttonColor" [innerHTML]="optionButton.content"></button>
         </div>
       </div>
     </div>

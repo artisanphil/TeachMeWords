@@ -519,7 +519,6 @@ function BoxOfQuestions(db) {
 			function isToBePracticed(aWord) {
 				if(again == true)
 				{
-					console.log("return to be practiced again");
 					return (aWord.queried == 1 && aWord.point == 0);
 				}
 				else
@@ -528,7 +527,7 @@ function BoxOfQuestions(db) {
 				}
 			}
 
-			if (_question === null || _wordsToPractice === null ) {
+			if (_question === null || _wordsToPractice === null || again == true) {
 				_wordsToPractice = (this.db.allWords()).filter(isToBePracticed, again);
 			}
 

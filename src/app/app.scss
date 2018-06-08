@@ -162,9 +162,15 @@ button:focus {
   border-color: #CCCCCC;
   border-width: 1px;
   border-style: solid;
+  text-transform: none;
 }
 /* displays a cross for the wrong answer
 <button type="button" class="optionBtn wrong">
+*/
+/*
+.optionBtn:hover {
+  background-color: #F5F5F5;
+}
 */
 .optionBtn.wrong {
   border-color: red;
