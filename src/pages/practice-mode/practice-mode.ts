@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomePage } from '../home/home';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 declare var BoxOfQuestions: any;
@@ -179,27 +180,18 @@ export class PracticeModePage {
         var LWarea = document.getElementById("learnWords2-area");
         LWarea.style.display = "none";
 
-        var message = document.getElementById("message");
-        var msg = "";
-        if(mode == "review")
-        {
-          msg += "<div style=\"height:100%; vertical-align:center;\">";
-          msg += "<img src=\"media/symbols/finished.png\">";
-          msg += "</div>";
-        }
-        else
-        {
-          msg += "<br><br>";
-          //msg += "<span class=answerText>" + LWutils.getPoints(wordsFilteredByTag) + "</span>";
-        }
-        msg += "<br><br>";
-        msg += "<img src=\"media/symbols/home.png\" onclick=\"window.location.replace('index.html');\" style=\"max-width:50%; max-height:50%; position: fixed; left: 40%; bottom: 0px;\">";
-
-        message.innerHTML = msg;
-        message.style.display = "block";
+        var finished = document.getElementById("finished");
+        finished.style.display = "block";
       }
     }
 
   }  
 
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
+    /* 
+    Uncaught (in promise): Error Type HomePage is part of the declarations of 2 modules:
+    AppModule and HomePageModule! Please consider moving HomePage to a higher module that imports AppModule
+    */ 
+  }
 }

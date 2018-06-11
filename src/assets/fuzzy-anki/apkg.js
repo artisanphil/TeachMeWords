@@ -192,12 +192,14 @@ function listDir(path, callback){
 	);
 };
 
-function getFileText(fileEntry, type, callback) {
-	window.resolveLocalFileSystemURL(fileEntry, function(fileEntry) {
+function getFileText(pathToFile, type, callback) {
+	window.resolveLocalFileSystemURL(pathToFile, function(fileEntry) {
+
 		fileEntry.file(function(file) {
 
 			var reader = new FileReader();
-
+			
+			//https://stackoverflow.com/questions/36283445/filereader-not-firing-onloadend-in-ionic-2/43703344
 			reader.onloadend = function(e) {
 				callback(this.result);
 			}
@@ -229,15 +231,26 @@ function ankiBinaryToTable(ankiArray, callback) {
 
 	unzipDir = cordova.file.cacheDirectory + "unzipped";
 	console.log("unzip directory: " + unzipDir);
+
+	document.getElementById("importMessage").innerHTML = "unzip directory: " + unzipDir;
 	zip.unzip(ankiArray, unzipDir, function(x){
-	
+
+		document.getElementById("importMessage").innerHTML = "unzipping";
+
 		listDir(unzipDir, function(filenames ){
 
+			document.getElementById("importMessage").innerHTML = filenames.join(",");
+			
 			if (filenames.indexOf("collection.anki2") >= 0) {
 				//var plain = unzip.decompress("collection.anki2");
 				//zip.unzip("/sdcard/Download/unzipped/collection.anki2", "/sdcard/Download/unzipped/collection", function(x, options){
+				document.getElementById("importMessage").innerHTML = "getFileText";
+
 				getFileText(unzipDir + "/collection.anki2", "binary", function(plain) {
+					document.getElementById("importMessage").innerHTML = "sqlToTable";
+
 					console.log("sqlToTable");
+
 					sqlToTable(plain);
 
 					if (filenames.indexOf("media") >= 0) {
@@ -246,6 +259,7 @@ function ankiBinaryToTable(ankiArray, callback) {
 						getFileText(unzipDir + "/media", "text", function(plainmedia) {
 							parseMedia(JSON.parse(plainmedia),"",filenames, function() {
 								console.log("import complete");
+								document.getElementById("importMessage").innerHTML = "import complete";
 
 								callback();
 							});
