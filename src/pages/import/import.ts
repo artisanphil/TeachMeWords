@@ -30,7 +30,7 @@ export class ImportPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImportPage');
-    document.getElementById("importMessage").innerHTML = "No cards found. Please find and open your .apkg file with LearnWords to import the lessons.";
+    document.getElementById("importMessage").innerHTML = "Available apkg files for import.";
     this.displayImport();
   }  
 
@@ -144,7 +144,7 @@ export class ImportPage {
       //console.log(wordlist);
       console.log("push to homepage");
       //that.navCtrl.push(HomePage);
-      that.navCtrl.setRoot(HomePage);
+      that.navCtrl.setRoot('HomePage');
     });
     
   }    

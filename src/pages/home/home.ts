@@ -43,10 +43,7 @@ export class HomePage {
     this.lessonButtons = [];
     var categories = document.getElementById("categories");
     if(wordlist.length > 0) {
-      
-      var reviewButton = document.getElementById("reviewButton");
-      reviewButton.style.display = "inline";
-      
+            
       for(var i=0;i<wordlist.length;i++) {
         var lesson = wordlist[i].tags.split(",")[0];
         if(arrLesson.indexOf(lesson) === -1) {

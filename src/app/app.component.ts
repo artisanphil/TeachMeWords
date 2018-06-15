@@ -3,10 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ImportPage } from '../pages/import/import';
-import { ListPage } from '../pages/list/list';
-
 declare var BoxOfQuestions: any;
 declare var LWdb: any;
 
@@ -16,17 +12,16 @@ declare var LWdb: any;
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, icon: string, page: string, mode: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Home', icon: 'home', page: 'HomePage', mode: "" },
+      { title: 'Import', icon: 'download', page: 'ImportPage', mode: "" },
+      { title: 'Review', icon: 'time', page: 'PracticeModePage', mode: "review"  }
     ];
 
   }
@@ -39,9 +34,9 @@ export class MyApp {
       this.splashScreen.hide();
 
       if (this.dataIsImported()) {
-        this.rootPage = HomePage;
+        this.nav.setRoot('HomePage');
       } else {
-        this.rootPage = ImportPage;
+        this.nav.setRoot('ImportPage');
       }      
     });
   }
@@ -62,6 +57,10 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    //this.nav.setRoot(page.component);
+
+    this.nav.push(page.page, {
+      mode: page.mode
+    });    
   }
 }
