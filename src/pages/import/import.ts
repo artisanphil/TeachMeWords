@@ -1,10 +1,9 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Zip } from '@ionic-native/zip';
-import { getComponent } from '@angular/core/src/linker/component_factory_resolver';
+//import { getComponent } from '@angular/core/src/linker/component_factory_resolver';
 declare var window;
 declare var ankiBinaryToTable: any;
 
@@ -81,7 +80,6 @@ export class ImportPage {
      * Recursive function for file entry.
      */
     var addFileEntry = function (entry) {
-
       var dirReader = entry.createReader();
       dirReader.readEntries(
         function (entries) {
@@ -100,7 +98,7 @@ export class ImportPage {
                 msg += "<textarea class=importFile type=\"input\" style=\"width:100%;\">" + entries[i].fullPath + "</textarea>";
                 msg += "<input type=\"hidden\" id=filenr" + i + " value=\"" + entries[i].nativeURL + "\">";
                 //msg += "<button myimport class=importButton (click)='openfile(" + i + ");'>Import</button>";
-                msg += "<button myimport value=" + i + " class=importButton>Import</button>";
+                msg += "<button ion-button value=" + i + " class=importButton [style.background-color]=\"buttonColor\">Import</button>";
                 msg += "</li>";
                 var importFiles = document.getElementById("importFiles");
                 importFiles.innerHTML += msg;
@@ -136,6 +134,7 @@ export class ImportPage {
     var myfile = (<HTMLInputElement>document.getElementById('filenr' + i)).value
     var that = this;
     console.log(myfile);
+    localStorage.clear();
     document.getElementById("importMessage").innerHTML = "Importing...";
     var importFiles = document.getElementById("importFiles");
     importFiles.innerHTML = "";

@@ -58,13 +58,15 @@ function loadIntoStorage(datatable, columns) {
 	var lw = BoxOfQuestions(LWdb('lw-storage'));
 	lw.db.loadWords(wordlist);
 
+
 	for (var key in localStorage) {
-		////console.log(key + ':' + localStorage[key]);
+		console.log(key + ':' + localStorage[key]);
 	}
 }
 
 
 function sqlToTable(uInt8ArraySQLdb) {
+
 	var db = new SQL.Database(uInt8ArraySQLdb);
 
 	// Decks table (for deck names)
@@ -108,6 +110,7 @@ function sqlToTable(uInt8ArraySQLdb) {
 			//var deckId = "deck-" + idx;
 			//d3.select("#anki").append("div").attr("id", deckId);
 			//tabulate(model.notes, model.fieldNames, "#" + deckId);
+
 			loadIntoStorage(model.notes, model.fieldNames);
 		});
 	}
@@ -116,12 +119,15 @@ function sqlToTable(uInt8ArraySQLdb) {
 
 function transferFile(sourceFilePath, targetFilePath, callbackTransfer) {
 	var ft = new FileTransfer();
+
 	ft.download(
 		sourceFilePath,
 		targetFilePath,
 		function(entry){
+			//entry.remove();
 			console.log(targetFilePath);
 			console.log("file copy success");
+			removeFile(sourceFilePath);
 			callbackTransfer();
 		},
 		function(error){
@@ -135,18 +141,24 @@ function parseMedia(imageTable,unzip,filenames, callback2){
 	console.log("start parseMedia");
 	var progressbar = document.getElementById("importProgress");
 	progressbar.style.display = "inline";
-	progressbar.max = filenames.length - 2;
+	console.log(filenames);
+	var mediaCount =  filenames.length - 3;
+	console.log("length: " + mediaCount);
+
+	progressbar.max = mediaCount;
 	var p = 0;
 	for (var prop in imageTable) {
 		if (filenames.indexOf(prop) >= 0) {
 			var sourceFilePath = unzipDir + "/" + prop;
-			var targetFilePath = cordova.file.dataDirectory + "media/" + imageTable[prop].replace(/[^a-zA-Z0-9.]/g, "");
+			var targetFilePath = cordova.file.dataDirectory + "media/" + imageTable[prop].normalize('NFD').replace(/[\u0300-\u036f ]/g, "");
 			transferFile(sourceFilePath,targetFilePath, function() {
 				//waiting for files to be transfered
 				p++;
 				progressbar.value = p;
 
-				if(p == (filenames.length - 2))
+				console.log(p + " * " + mediaCount);
+
+				if(p == mediaCount)
 				{
 					progressbar.style.display = "none";
 					console.log("finish parseMedia");
@@ -156,6 +168,29 @@ function parseMedia(imageTable,unzip,filenames, callback2){
 		}
 	}
 }
+
+function removeFile(file) {
+	
+	var filename = file.replace(/^.*[\\\/]/, '');
+	var filepath = file.substring(0, file.lastIndexOf("/"))
+
+	window.resolveLocalFileSystemURL(filepath, function(dir) {
+		// get the file named "config.json"
+		dir.getFile(filename, { create: true }, function(fileEntry) {
+
+		  // attempt to remove the file if it exists
+		  fileEntry.remove(function() {
+			// delete successful
+			console.info(file + ' has been deleted successfully.');
+		  }, function(error) {
+			// delete failed
+			console.error('Could not delete ' + file + ' file. ' + JSON.stringify( error ));
+		  });
+		  
+		});
+		
+	  });	
+ }	
 
 function converterEngine (input) { // fn BLOB => Binary => Base64 ?
 	// adopted from https://github.com/NYTimes/svg-crowbar/issues/16
@@ -229,7 +264,8 @@ function ankiBinaryToTable(ankiArray, callback) {
 
 	//console.log(ankiArray);
 
-	unzipDir = cordova.file.cacheDirectory + "unzipped";
+	unzipDir = cordova.file.cacheDirectory + "unzipped";	
+
 	console.log("unzip directory: " + unzipDir);
 
 	document.getElementById("importMessage").innerHTML = "unzip directory: " + unzipDir;
@@ -247,9 +283,6 @@ function ankiBinaryToTable(ankiArray, callback) {
 				document.getElementById("importMessage").innerHTML = "getFileText";
 
 				getFileText(unzipDir + "/collection.anki2", "binary", function(plain) {
-					document.getElementById("importMessage").innerHTML = "sqlToTable";
-
-					console.log("sqlToTable");
 
 					sqlToTable(plain);
 
