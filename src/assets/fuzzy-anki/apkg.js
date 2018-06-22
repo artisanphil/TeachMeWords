@@ -23,6 +23,9 @@ function loadIntoStorage(datatable, columns) {
 		wordlist[i]['queried'] = 0;
 		wordlist[i]['importedFromAPKG'] = 1;
 
+		var numFrontCards = 0;
+		var numBackCards = 0;
+
 		for(data in datatable[i]) {
 
 			if(data == "Front")
@@ -30,6 +33,7 @@ function loadIntoStorage(datatable, columns) {
 				//alert(datatable[i][data]);
 				var word = datatable[i][data].replace(/\[sound:(.*?)\]/g, '$1');
 				wordlist[i]['word'] = word.normalize('NFD').replace(/[\u0300-\u036f ]/g, "");
+				numFrontCards++;
 			}
 			if(data == "Back")
 			{
@@ -43,6 +47,7 @@ function loadIntoStorage(datatable, columns) {
 				}
 
 				wordlist[i]['translate'] = translate.normalize('NFD').replace(/[\u0300-\u036f ]/g, "");
+				numBackCards++;
 			}
 			if(data == "tags")
 			{
@@ -52,6 +57,12 @@ function loadIntoStorage(datatable, columns) {
 			{
 				wordlist[i]['pronunciation'] = datatable[i][data].trim();
 			}
+		}
+
+		if(numFrontCards == 0 || numBackCards == 0)
+		{
+			document.getElementById("importMessage").innerHTML = "This is not a valid TeachMeWords apkg file.";
+			localStorage.clear();
 		}
 	}
 
@@ -146,6 +157,11 @@ function parseMedia(imageTable,unzip,filenames, callback2){
 	console.log(filenames);
 	var mediaCount =  filenames.length - 3;
 	console.log("length: " + mediaCount);
+
+	if(mediaCount <= 0)
+	{
+		callback2();
+	}
 
 	progressbar.max = mediaCount;
 	var p = 0;
@@ -282,13 +298,13 @@ function ankiBinaryToTable(ankiArray, callback) {
 			if (filenames.indexOf("collection.anki2") >= 0) {
 				//var plain = unzip.decompress("collection.anki2");
 				//zip.unzip("/sdcard/Download/unzipped/collection.anki2", "/sdcard/Download/unzipped/collection", function(x, options){
-				document.getElementById("importMessage").innerHTML = "getFileText";
+				document.getElementById("importMessage").innerHTML = "importing lessons...";
 
 				getFileText(unzipDir + "/collection.anki2", "binary", function(plain) {
 
 					sqlToTable(plain);
 
-					if (filenames.indexOf("media") >= 0) {
+					if (filenames.indexOf("media") > 0) {
 						//var plainmedia = unzip.decompress("media");
 						console.log(unzipDir + "/media");
 						getFileText(unzipDir + "/media", "text", function(plainmedia) {

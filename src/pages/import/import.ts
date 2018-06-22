@@ -104,7 +104,7 @@ export class ImportPage {
               // Recursive -- call back into this subdirectory
               addFileEntry(entries[i]);
             } else {
-              if(entries[i].fullPath.endsWith(".apkg"))
+              if(entries[i].fullPath.endsWith(".apkg") && entries[i].fullPath.search("/AnkiDroid/") == -1)
               {
                 console.log(entries[i].fullPath);
                 that.arrFiles.push({nr: i, fullPath: entries[i].fullPath, nativeURL: entries[i].nativeURL}); 
