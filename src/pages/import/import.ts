@@ -1,11 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Zip } from '@ionic-native/zip';
 //import { getComponent } from '@angular/core/src/linker/component_factory_resolver';
 declare var window;
 declare var ankiBinaryToTable: any;
+let loading;
 
 /**
  * Generated class for the ImportPage page.
@@ -21,14 +22,20 @@ declare var ankiBinaryToTable: any;
 })
 export class ImportPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private transfer: FileTransfer, private file: File, private zip: Zip, private elRef: ElementRef, renderer: Renderer2) {
-    renderer.listen(elRef.nativeElement, 'click', (event) => {
-      this.openfile(event.srcElement.value);
-    })
+  arrFiles: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private transfer: FileTransfer, private file: File, private zip: Zip, private elRef: ElementRef, renderer: Renderer2, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImportPage');
+    
+    loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+
     document.getElementById("importMessage").innerHTML = "Available apkg files for import.";
     this.displayImport();
   }  
@@ -45,6 +52,8 @@ export class ImportPage {
     var index = 0;
     var i;
     var el = this.elRef;
+
+    this.arrFiles = [];
     /**
      * Need cordova.file plugin.
      * $ cordova plugin add org.apache.cordova.file
@@ -67,18 +76,24 @@ export class ImportPage {
       this.file.syncedDataDirectory
     ];
 
-    function loopThroughDirectories(localURLs) {
+    function loopThroughDirectories(localURLs, callback) {
       for (i = 0; i < localURLs.length; i++) {
+
+        if(i == (localURLs.length - 1))
+        {
+          loading.dismiss();
+          callback();
+        }
         if (localURLs[i] === null || localURLs[i].length === 0) {
           continue; // skip blank / non-existent paths for this platform
         }
         window.resolveLocalFileSystemURL(localURLs[i], addFileEntry, addError);
       }
-
     }
     /**
      * Recursive function for file entry.
      */
+    var that = this;
     var addFileEntry = function (entry) {
       var dirReader = entry.createReader();
       dirReader.readEntries(
@@ -91,18 +106,8 @@ export class ImportPage {
             } else {
               if(entries[i].fullPath.endsWith(".apkg"))
               {
-                //this.categories.push(entries[i].fullPath);
-                
-                //fileStr = entries[i].fullPath;
-                var msg = "<li style=\"list-style-type:none; margin-top:5px\">";
-                msg += "<textarea class=importFile type=\"input\" style=\"width:100%;\">" + entries[i].fullPath + "</textarea>";
-                msg += "<input type=\"hidden\" id=filenr" + i + " value=\"" + entries[i].nativeURL + "\">";
-                //msg += "<button myimport class=importButton (click)='openfile(" + i + ");'>Import</button>";
-                msg += "<button ion-button value=" + i + " class=importButton [style.background-color]=\"buttonColor\">Import</button>";
-                msg += "</li>";
-                var importFiles = document.getElementById("importFiles");
-                importFiles.innerHTML += msg;
-                //console.log(msg);
+                console.log(entries[i].fullPath);
+                that.arrFiles.push({nr: i, fullPath: entries[i].fullPath, nativeURL: entries[i].nativeURL}); 
               }
             }
           }
@@ -124,20 +129,23 @@ export class ImportPage {
      * Loop through the array.
      */
 
-    loopThroughDirectories(localURLs);
+    loopThroughDirectories(localURLs, function(){
+    });
     
     //return addFileEntry;
   }  
 
-  openfile(i)
+  openfile(clickedButton)
   {
+    var i = clickedButton.currentTarget.id;
+    var listFiles = document.getElementById("listFiles");
+    listFiles.style.display = 'none';
+
     var myfile = (<HTMLInputElement>document.getElementById('filenr' + i)).value
     var that = this;
     console.log(myfile);
     localStorage.clear();
     document.getElementById("importMessage").innerHTML = "Importing...";
-    var importFiles = document.getElementById("importFiles");
-    importFiles.innerHTML = "";
     
     ankiBinaryToTable(myfile, function() {
       //console.log(wordlist);

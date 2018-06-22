@@ -15,7 +15,14 @@
 
 <ion-content padding>
   <div id=importMessage></div>
+  <ul id=listFiles>
+  <li style="list-style-type:none; margin-top:5px" *ngFor="let file of arrFiles">
+      <textarea class=importFile type="input" style="width:100%;">{{file.fullPath}}</textarea>
+      <input type="hidden" id=filenr{{file.nr}} value="{{file.nativeURL}}">
+      <button ion-button id="{{file.nr}}" (click)="openfile($event)" class=importButton>Import</button>
+      </li>
+  </ul>
+
   <p></p>
-  <div id=importFiles></div>
   <progress id=importProgress style="display:none;"></progress>
 </ion-content>

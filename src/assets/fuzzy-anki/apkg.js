@@ -139,8 +139,10 @@ function transferFile(sourceFilePath, targetFilePath, callbackTransfer) {
 function parseMedia(imageTable,unzip,filenames, callback2){
 	var map = {};
 	console.log("start parseMedia");
+	
 	var progressbar = document.getElementById("importProgress");
 	progressbar.style.display = "inline";
+	
 	console.log(filenames);
 	var mediaCount =  filenames.length - 3;
 	console.log("length: " + mediaCount);
