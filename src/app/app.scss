@@ -164,6 +164,12 @@ button:focus {
   border-style: solid;
   text-transform: none;
 }
+
+.optionBtn.listen {
+  background-image: url("../assets/imgs/listen.png");
+  background-position: right 10px center !important; 
+  background-size: auto 60% !important;
+}
 /* displays a cross for the wrong answer
 <button type="button" class="optionBtn wrong">
 */

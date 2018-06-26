@@ -6,7 +6,6 @@ declare var LWdb: any;
 declare var LWutils: any;
 var lw = BoxOfQuestions(LWdb('lw-storage'));
 var wordNumber = 1;
-
 /**
  * Generated class for the LearnModePage page.
  *
@@ -39,12 +38,16 @@ export class LearnModePage {
   {
     var wordID = clickedOption.currentTarget.id;
     var clickedWord = lw.getWord(wordID);
+    clickedOption.currentTarget.classList.add("listen");
     
     var mediaPath = LWutils.getMediaPath(clickedWord.importedFromAPKG);
-    
     //doesn't work with ionic live-reload https://github.com/ionic-team/ionic-cli/issues/287
-    LWutils.playAudio(mediaPath + clickedWord.word);
+    var hasPlayed = LWutils.playAudio(mediaPath + clickedWord.word);
     
+    hasPlayed.addEventListener("ended", function() {
+      var myButton = document.getElementById(wordID);
+      myButton.classList.remove("listen");
+    });
   }
 
   back(lesson) :  void {

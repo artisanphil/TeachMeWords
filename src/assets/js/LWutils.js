@@ -57,6 +57,8 @@ LWutils = {
 			}
 			*/
 		my_media.play();
+
+		return my_media;
 	},
 	getParameterByName: function(name, url) {
 		    if (!url) url = window.location.href;
