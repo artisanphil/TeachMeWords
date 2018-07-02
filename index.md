@@ -5,3 +5,5 @@ These are the main advantages:
 * Very easy to use
 * Answers are in multiple choice format
 * User can choose from 3 modes: Learn, Practice and Review (spaced-repetition)
+
+![Import an apkg file](/resources/screenshots/import.png "Import an apkg file")
