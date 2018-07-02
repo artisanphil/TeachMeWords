@@ -24,6 +24,7 @@ tmp/
 temp/
 hooks/
 platforms/
+!platforms/android/build/outputs/apk/TeachMeWords.apk
 plugins/
 plugins/android.json
 plugins/ios.json
