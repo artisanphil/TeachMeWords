@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.sil.teachmewords" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TeachMeWords</name>
-    <description>LearnWords is a simple app for creating word-based lessons. It’s based on sound and pictures/text.</description>
+    <description>TeachMeWords is a simple app for learning word-based lessons. It’s based on sound and pictures/text.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -77,20 +77,23 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
+    <allow-navigation href="http://192.168.1.101:8100" />
+    <allow-navigation href="http://192.168.1.105:8100" />
+    <allow-navigation href="http://192.168.1.100:8100" />
+    <allow-navigation href="http://192.168.2.227:8100" />
+    <allow-navigation href="http://192.168.1.102:8100" />
+    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <engine name="android" spec="~6.3.0" />
-    <allow-navigation href="http://192.168.1.101:8100" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
-    <allow-navigation href="http://192.168.1.105:8100" />
-    <allow-navigation href="http://192.168.1.100:8100" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="^2.4.0">
-        <variable name="XWALK_VERSION" value="23+" />
+        <variable name="XWALK_VERSION" value="22+" />
         <variable name="XWALK_LITEVERSION" value="xwalk_core_library_canary:17+" />
         <variable name="XWALK_COMMANDLINE" value="--disable-pull-to-refresh-effect" />
         <variable name="XWALK_MODE" value="embedded" />
@@ -100,6 +103,4 @@
         <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
     </plugin>
     <plugin name="cordova-plugin-filepath" spec="^1.3.0" />
-    <allow-navigation href="http://192.168.2.227:8100" />
-    <allow-navigation href="http://192.168.1.102:8100" />
 </widget>
