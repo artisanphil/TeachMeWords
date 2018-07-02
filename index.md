@@ -6,4 +6,5 @@ These are the main advantages:
 * Answers are in multiple choice format
 * User can choose from 3 modes: Learn, Practice and Review (spaced-repetition)
 
-![Import an apkg file](/resources/screenshots/import.png "Import an apkg file")
+![Import an apkg file](/TeachMeWords/resources/screenshots/import.png "Import an apkg file")
+![Choose a lesson](/TeachMeWords/resources/screenshots/lessons.png "Choose a lesson")
