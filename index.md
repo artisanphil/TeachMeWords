@@ -73,14 +73,14 @@ Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" targ
 
 1. Click on the "Create Deck" button at the bottom. Then click on the deck to open it. 
 
-1. Click on the “Add” item:
+1. >>>Click on the “Add” item:
 
 <img src="/TeachMeWords/resources/screenshots/anki-add.png">
-
-1. This is how it should look like (minus the pronunciation field which is optional, see below): 
+>>>
+1. >>>This is how it should look like (minus the pronunciation field which is optional, see below): 
 
     <img src="/TeachMeWords/resources/screenshots/TeachMeWords-card.png">
-
+>>>
 1. For the front field (the question) we add a sound file by either clicking on the clip icon or the record icon.
 
     The clip icon will allow us to attach a mp3 file from our computer (has to be mp3). You can also drag & drop your mp3 files.
