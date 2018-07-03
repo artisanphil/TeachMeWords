@@ -82,27 +82,27 @@ Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" targ
     <img src="/TeachMeWords/resources/screenshots/TeachMeWords-card.png">
 
 1. For the front field (the question) we add a sound file by either clicking on the clip icon or the record icon.
-
-    The clip icon will allow us to attach a mp3 file from our computer (has to be mp3). You can also drag & drop your mp3 files.
-
-    If we choose the record icon, we can immediately use our microphone to record a word and it will automatically save as an mp3 file.
-
-    In either case, it will generate a code similar to this one: [sound:rec1521777153.mp3]
-
-    <img src="/TeachMeWords/resources/screenshots/sound1.png">
-
-1. The back field is for the answer options. You can insert a picture using the clip icon or write a text answer. Your image shouldn’t be bigger than 50kb, so that the apk file doesn’t get too big. The dimensions can be around 200x200px.
-
-    <img src="/TeachMeWords/resources/screenshots/image.png">
-
-1. The pronunciation field can be left empty in most cases. You would need to fill it out if you have another word you are using that sounds exactly the same. For example “there” and “their”:
-
-    <img src="/TeachMeWords/resources/screenshots/pronunciation.png">
-
-    In order to add a pronunciation field, click on the "Fields" button and then click "Add" and write "pronunciation". 
-
-    <img src="/TeachMeWords/resources/screenshots/add-pronunciation.png">
     
+    The clip icon will allow us to attach a mp3 file from our computer (has to be mp3). You can also drag & drop your mp3 files.
+    
+    If we choose the record icon, we can immediately use our microphone to record a word and it will automatically save as an mp3 file.
+    
+    In either case, it will generate a code similar to this one: [sound:rec1521777153.mp3]
+    
+    <img src="/TeachMeWords/resources/screenshots/sound1.png">
+    
+1. The back field is for the answer options. You can insert a picture using the clip icon or write a text answer. Your image shouldn’t be bigger than 50kb, so that the apk file doesn’t get too big. The dimensions can be around 200x200px.
+    
+    <img src="/TeachMeWords/resources/screenshots/image.png">
+    
+1. The pronunciation field can be left empty in most cases. You would need to fill it out if you have another word you are using that sounds exactly the same. For example “there” and “their”:
+    
+    <img src="/TeachMeWords/resources/screenshots/pronunciation.png">
+    
+    In order to add a pronunciation field, click on the "Fields" button and then click "Add" and write "pronunciation". 
+    
+    <img src="/TeachMeWords/resources/screenshots/add-pronunciation.png">
+        
 1. You will be creating lessons with around 10 – 20 words. You should use a number for the lesson so that they get sorted accordingly. You can also add some text so that the student knows what it is about (if he can read). The lesson name goes into the field “tags”:
 
     <img src="/TeachMeWords/resources/screenshots/tags.png">
