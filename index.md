@@ -1,5 +1,5 @@
 <style>
-img {border: black 1px solid; }
+img {border: black 1px solid !important; }
 </style>
 TeachMeWords main target group are people who can’t read or are learning a foreign language. It’s based on sound and pictures/text. It’s similar to other flashcard apps like Anki.
 
