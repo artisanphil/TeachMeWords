@@ -65,37 +65,37 @@ In practice mode you will hear a word (or letter) and then you need to choose fr
 
 The review mode is optional (and currently slightly hidden). You can find it by clicking on the hamburger menu on the lesson overview page. In the review mode you get to practice all lessons you have already gone through. It will start with the questions you answered wrong. The words don't show up until the next day. This uses spaced-repetition, so it will ask words you already know less often. 
 
-## Create Lessons
+# Create Lessons
 
 Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" target="_blank">Anki Desktop</a>. Anki, like TeachMeWords, is a program used for spaced repetition, but more complicated to use for the end user. It’s useful though for creating the lessons, as Anki can package all data (including mp3’s and images) into an apkg file which can be imported by TeachMeWords.
 
 1. Download and install <a href="https://apps.ankiweb.net/" target="_blank">Anki Desktop</a>.
 
-2. Click on the "Create Deck" button at the bottom. Then click on the deck to open it. 
+1. Click on the "Create Deck" button at the bottom. Then click on the deck to open it. 
 
-4. Click on the “Add” item:
+1. Click on the “Add” item:
 
 <img src="/TeachMeWords/resources/screenshots/anki-add.png">
 
-5. This is how it should look like (minus the pronunciation field which is optional, see below): 
+1. This is how it should look like (minus the pronunciation field which is optional, see below): 
 
 <img src="/TeachMeWords/resources/screenshots/TeachMeWords-card.png">
 
-6. For the front field (the question) we add a sound file by either clicking on the clip icon or the record icon.
+1. For the front field (the question) we add a sound file by either clicking on the clip icon or the record icon.
 
-The clip icon will allow us to attach a mp3 file from our computer (has to be mp3). You can also drag & drop your mp3 files.
+    The clip icon will allow us to attach a mp3 file from our computer (has to be mp3). You can also drag & drop your mp3 files.
 
-If we choose the record icon, we can immediately use our microphone to record a word and it will automatically save as an mp3 file.
+    If we choose the record icon, we can immediately use our microphone to record a word and it will automatically save as an mp3 file.
 
-In either case, it will generate a code similar to this one: [sound:rec1521777153.mp3]
+    In either case, it will generate a code similar to this one: [sound:rec1521777153.mp3]
 
-<img src="/TeachMeWords/resources/screenshots/sound1.png">
+    <img src="/TeachMeWords/resources/screenshots/sound1.png">
 
-7. The back field is for the answer options. You can insert a picture using the clip icon or write a text answer. Your image shouldn’t be bigger than 50kb, so that the apk file doesn’t get too big. The dimensions can be around 200x200px.
+1. The back field is for the answer options. You can insert a picture using the clip icon or write a text answer. Your image shouldn’t be bigger than 50kb, so that the apk file doesn’t get too big. The dimensions can be around 200x200px.
 
 <img src="/TeachMeWords/resources/screenshots/image.png">
 
-8. The pronunciation field can be left empty in most cases. You would need to fill it out if you have another word you are using that sounds exactly the same. For example “there” and “their”:
+1. The pronunciation field can be left empty in most cases. You would need to fill it out if you have another word you are using that sounds exactly the same. For example “there” and “their”:
 
 <img src="/TeachMeWords/resources/screenshots/pronunciation.png">
 
@@ -103,8 +103,24 @@ In order to add a pronunciation field, click on the "Fields" button and then cli
 
 <img src="/TeachMeWords/resources/screenshots/add-pronunciation.png">
 
-9. You will be creating lessons with around 10 – 20 words. You should use a number for the lesson so that they get sorted accordingly. You can also add some text so that the student knows what it is about (if he can read). The lesson name goes into the field “tags”:
+1. You will be creating lessons with around 10 – 20 words. You should use a number for the lesson so that they get sorted accordingly. You can also add some text so that the student knows what it is about (if he can read). The lesson name goes into the field “tags”:
 
 <img src="/TeachMeWords/resources/screenshots/tags.png">
 
-10. Now you can export your lessons.
+1. Now you can export your lessons.
+
+# Export Lessons
+
+In order to export your lessons which you created in Anki so that they can be imported into LearnWords, you need to go to “File” – “Export”.
+
+Export format: Anki Deck Package (*.apkg)
+
+Include: Choose the name of your Anki deck
+
+Uncheck “Include scheduling information”
+
+Check “Include media”
+
+<img src="/TeachMeWords/resources/screenshots/export1.png">
+
+The easiest way to transfer a file form your computer to your Android device is using an USB cable. Another method is using Dropbox or Google Drive. Learn more here: <a href="https://support.google.com/nexus/answer/2840804?hl=en" target="_blank">https://support.google.com/nexus/answer/2840804?hl=en</a>
