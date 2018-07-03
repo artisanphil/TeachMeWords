@@ -15,6 +15,19 @@ These are the main advantages:
 * Search for "TeachMeWords" in Google Play -> <a href="https://play.google.com/store/apps/details?id=com.sil.teachmewords">direkt link</a>
 * Or download the <a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/TeachMeWords.apk">apk file</a> and install it on your Android phone
 
+# Example Lessons
+
+Here are some example lessons that you can try out. Copy one of the apkg example lessons onto your phone and run TeachMeWords to import them.
+
+<a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/Hangul.apkg">Hangul.apkg</a>
+A few lessons for learning the sound of Korean vowels.
+
+<a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/deutsch-lektionen.apkg">deutsch-lektionen.apkg</a>
+A few lessons on learning some German words. These lessons use audio and pictures (instead of text).
+
+<a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/SightWords.apkg">SightWords.apkg</a>
+This one I created for my kindergarten aged son, to learn the sound of frequent English words like "they", "with", "were", etc.
+
 # How to use
 ## Import
 When you open the app, you will first be asked to import a apkg file. This apkg file needs to be placed somewhere on your Android device. 
@@ -26,7 +39,7 @@ After you have imported your apkg file, you can choose a lesson.
 
 <img src="/TeachMeWords/resources/screenshots/lessons.png" alt="Choose a lesson">
 
-## Choose Learn Mode
+## Learn Modes
 
 Now one can choose a learn mode. 
 
@@ -36,18 +49,18 @@ Now one can choose a learn mode.
 * Practice: Click on the image with the hand
 * Review: Hidden in menu, see instructions below
 
-### Learn Mode
+***Learn Mode***
 
 In the learn mode you can press on a card to hear how it is pronounced. Click on the arrow button to see more cards.
 
 <img src="/TeachMeWords/resources/screenshots/learn.png" alt="Learn Mode">
 
-### Practice Mode
+***Practice Mode***
 
 In practice mode you will hear a word (or letter) and then you need to choose from one of 4 options. It won't continue to the next word until you have made the correct selection. After you have gone through all words in the lesson, the wrong answered words will be questioned again.
 
 <img src="/TeachMeWords/resources/screenshots/practice.png" alt="Practice Mode">
 
-### Review Mode
+***Review Mode***
 
 The review mode is optional (and currently slightly hidden). You can find it by clicking on the hamburger menu on the lesson overview page. In the review mode you get to practice all lessons you have already gone through. It will start with the questions you answered wrong. The words don't show up until the next day. This uses spaced-repetition, so it will ask words you already know less often. 
