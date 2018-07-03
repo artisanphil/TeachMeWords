@@ -79,7 +79,7 @@ Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" targ
 
 1. This is how it should look like (minus the pronunciation field which is optional, see below): 
 
-<img src="/TeachMeWords/resources/screenshots/TeachMeWords-card.png">
+    <img src="/TeachMeWords/resources/screenshots/TeachMeWords-card.png">
 
 1. For the front field (the question) we add a sound file by either clicking on the clip icon or the record icon.
 
