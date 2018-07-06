@@ -44,6 +44,7 @@ export class ImportPage {
   }
   
   displayImport() {
+    console.log("displayImport");
     /**
      * Starter vars.
      */
@@ -79,6 +80,7 @@ export class ImportPage {
     function loopThroughDirectories(localURLs, callback) {
       for (i = 0; i < localURLs.length; i++) {
 
+        console.log("directory: " + localURLs[i]);
         if(i == (localURLs.length - 1))
         {
           loading.dismiss();
@@ -95,18 +97,21 @@ export class ImportPage {
      */
     var that = this;
     var addFileEntry = function (entry) {
+      console.log("addFileEntry");
       var dirReader = entry.createReader();
       dirReader.readEntries(
         function (entries) {
+          console.log("nr of entries: " + entries.length);
           var i;
           for (i = 0; i < entries.length; i++) {
+            console.log(entries[i].fullPath);
             if (entries[i].isDirectory === true) {
               // Recursive -- call back into this subdirectory
               addFileEntry(entries[i]);
             } else {
               if(entries[i].fullPath.endsWith(".apkg") && entries[i].fullPath.search("/AnkiDroid/") == -1)
               {
-                console.log(entries[i].fullPath);
+                console.log(i + ": " + entries[i].fullPath);
                 that.arrFiles.push({nr: i, fullPath: entries[i].fullPath, nativeURL: entries[i].nativeURL}); 
               }
             }
