@@ -12,8 +12,7 @@ These are the main advantages:
 
 # Download
 
-* Search for "TeachMeWords" in Google Play -> <a href="https://play.google.com/store/apps/details?id=com.sil.teachmewords">direkt link</a>
-* Or download the <a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/TeachMeWords.apk">apk file</a> and install it on your Android phone
+* Download the <a href="https://github.com/phil4literacy/TeachMeWords/releases/download/1/TeachMeWords.apk">apk file</a> and install it on your Android phone
 
 # Example Lessons
 
