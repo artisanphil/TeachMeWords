@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Zip } from '@ionic-native/zip';
+import { TranslateService } from '@ngx-translate/core';
+
 //import { getComponent } from '@angular/core/src/linker/component_factory_resolver';
 declare var window;
 declare var ankiBinaryToTable: any;
@@ -24,7 +26,7 @@ export class ImportPage {
 
   arrFiles: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private transfer: FileTransfer, private file: File, private zip: Zip, private elRef: ElementRef, renderer: Renderer2, public loadingCtrl: LoadingController) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams, private transfer: FileTransfer, private file: File, private zip: Zip, private elRef: ElementRef, renderer: Renderer2, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -36,7 +38,7 @@ export class ImportPage {
   
     loading.present();
 
-    document.getElementById("importMessage").innerHTML = "Available apkg files for import.";
+    document.getElementById("importMessage").innerHTML = "Available apkg files for import. " + navigator.language.split('-')[0];
     this.displayImport();
   }  
 
