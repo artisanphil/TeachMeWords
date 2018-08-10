@@ -3,6 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
+import { Globalization } from '@ionic-native/globalization';
+import { availableLanguages, defaultLanguage } from '../assets/i18n/i18n.constants';
 
 declare var BoxOfQuestions: any;
 declare var LWdb: any;
@@ -15,7 +17,8 @@ export class MyApp {
 
   pages: Array<{title: string, icon: string, page: string, mode: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private translate: TranslateService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+    private translate: TranslateService, private globalization: Globalization ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -31,7 +34,13 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang('en');
       //this.translate.use('zh');              
-
+      
+      this.globalization.getPreferredLanguage().then(result => {
+        console.log("preferred language: " + result.value);
+        var language = this.getSuitableLanguage(result.value);
+        console.log("use language: " + language);
+        this.translate.use(language);
+    });      
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -43,6 +52,11 @@ export class MyApp {
         this.nav.setRoot('ImportPage');
       }      
     });
+  }
+
+  getSuitableLanguage(language) {
+		language = language.substring(0, 2).toLowerCase();
+		return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
   }
 
   dataIsImported() {

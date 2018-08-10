@@ -38,7 +38,7 @@ export class ImportPage {
   
     loading.present();
 
-    document.getElementById("importMessage").innerHTML = "Available apkg files for import. " + navigator.language.split('-')[0];
+    document.getElementById("importMessage").innerHTML = "Available apkg files for import. ";
     this.displayImport();
   }  
 
