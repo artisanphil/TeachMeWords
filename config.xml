@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="100003" id="com.sil.teachmewords" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="100004" id="com.sil.teachmewords" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TeachMeWords</name>
     <description>TeachMeWords is a simple app for learning word-based lessons. It’s based on sound and pictures/text.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -83,6 +83,7 @@
     <allow-navigation href="http://192.168.1.100:8100" />
     <allow-navigation href="http://192.168.2.227:8100" />
     <allow-navigation href="http://192.168.1.102:8100" />
+    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
@@ -104,4 +105,5 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.2.1" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <plugin name="cordova-plugin-localization-strings" spec="git+https://github.com/kelvinhokk/cordova-plugin-localization-strings.git" />
 </widget>

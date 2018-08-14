@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ChooseModePage } from './choose-mode';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { ChooseModePage } from './choose-mode';
   ],
   imports: [
     IonicPageModule.forChild(ChooseModePage),
+    TranslateModule.forChild()
   ],
 })
 export class ChooseModePageModule {}

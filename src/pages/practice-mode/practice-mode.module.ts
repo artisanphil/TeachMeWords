@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PracticeModePage } from './practice-mode';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { PracticeModePage } from './practice-mode';
   ],
   imports: [
     IonicPageModule.forChild(PracticeModePage),
+    TranslateModule.forChild()
   ],
 })
 export class PracticeModePageModule {}

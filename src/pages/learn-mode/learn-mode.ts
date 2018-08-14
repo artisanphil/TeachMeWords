@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var BoxOfQuestions: any;
 declare var LWdb: any;
@@ -23,7 +24,7 @@ export class LearnModePage {
   arrWords: any;
   lessonName: any; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {

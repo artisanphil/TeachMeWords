@@ -22,6 +22,7 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+
     this.pages = [
       { title: 'Home', icon: 'home', page: 'HomePage', mode: "" },
       { title: 'Import', icon: 'download', page: 'ImportPage', mode: "" },

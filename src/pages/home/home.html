@@ -3,12 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>TeachMeWords</ion-title>
+    <ion-title>{{ "TeachMeWords" | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Lessons</h3>
+  <h3>{{ "Lessons" | translate }}</h3>
   <div id=categories></div>
   <div *ngFor="let lesson of lessonButtons">
     <figure class=category (click)="navigateToChooseMode(lesson.lessonName)"><div [innerHTML]="lesson.lessonContent"></div>

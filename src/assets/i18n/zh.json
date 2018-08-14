@@ -1,3 +1,13 @@
 {
-    "Import" : "导入"
+    "Import" : "导入",
+    "PleaseWait" : "请等待...",
+    "Home" : "首页",
+    "Review" : "复习",
+    "Menu" : "菜单",
+    "availableAPKG" : "可用于导入的apkg文件。",
+    "Importing" : "导入...",
+    "TeachMeWords" : "教我读",
+    "Lessons" : "功课",
+    "Learn" : "学习",
+    "Practice" : "练习"
 }

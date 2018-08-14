@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { File } from '@ionic-native/file';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var BoxOfQuestions: any;
 declare var LWdb: any;
@@ -14,7 +15,7 @@ export class HomePage {
 
   lessonButtons: any;
 
-  constructor(public navCtrl: NavController, private file: File) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, private file: File) {
     
   }
 

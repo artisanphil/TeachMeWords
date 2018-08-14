@@ -33,12 +33,12 @@ export class ImportPage {
     console.log('ionViewDidLoad ImportPage');
     
     loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: this.translate.instant('PleaseWait')
     });
   
     loading.present();
 
-    document.getElementById("importMessage").innerHTML = "Available apkg files for import. ";
+    document.getElementById("importMessage").innerHTML = this.translate.instant('availableAPKG');
     this.displayImport();
   }  
 
@@ -152,7 +152,7 @@ export class ImportPage {
     var that = this;
     console.log(myfile);
     localStorage.clear();
-    document.getElementById("importMessage").innerHTML = "Importing...";
+    document.getElementById("importMessage").innerHTML = this.translate.instant('Importing');
     
     ankiBinaryToTable(myfile, function() {
       //console.log(wordlist);

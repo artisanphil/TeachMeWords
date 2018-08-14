@@ -19,7 +19,7 @@
   <li style="list-style-type:none; margin-top:5px" *ngFor="let file of arrFiles">
       <textarea class=importFile type="input" style="width:100%;">{{file.fullPath}}</textarea>
       <input type="hidden" id=filenr{{file.nr}} value="{{file.nativeURL}}">
-      <button ion-button id="{{file.nr}}" (click)="openfile($event)" class=importButton>Import</button>
+      <button ion-button id="{{file.nr}}" (click)="openfile($event)" class=importButton>{{ "Import" | translate }}</button>
       </li>
   </ul>
 

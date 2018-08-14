@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var BoxOfQuestions: any;
 declare var LWdb: any;
@@ -30,8 +31,9 @@ export class PracticeModePage {
 
   arrOptionButtons: any;
   lessonName: any; 
+  title: string; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -46,12 +48,16 @@ export class PracticeModePage {
     tag = this.navParams.get('tag');
     mode = this.navParams.get('mode');
     this.lessonName = tag;
-
     
+    this.title = this.translate.instant('Practice') + " '" + tag + "'";
     if(mode == "practice")
     {
       lw.resetQueried();
     }    
+    else
+    {
+      this.title = this.translate.instant('Review');
+    }
 
     this.showRepeat(tag, mode);
   }

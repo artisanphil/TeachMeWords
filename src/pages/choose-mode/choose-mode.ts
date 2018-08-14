@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the ChooseModePage page.
@@ -17,7 +18,7 @@ export class ChooseModePage {
 
   lesson: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
