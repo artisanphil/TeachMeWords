@@ -64,6 +64,11 @@ In practice mode you will hear a word (or letter) and then you need to choose fr
 
 The review mode is optional (and currently slightly hidden). You can find it by clicking on the hamburger menu on the lesson overview page. In the review mode you get to practice all lessons you have already gone through. It will start with the questions you answered wrong. The words don't show up until the next day. This uses spaced-repetition, so it will ask words you already know less often. 
 
+# Language support
+
+TeachMeWords only comes with very little text as it's made for people who can't read. There are a few labels though to make things more clear and there is the option to localize those. Please contact the developer to request language support for your language.
+Currently there is a Chinese version that displays automatically on devices that have set the language to Chinese. See <a href="https://www.wikihow.tech/Change-the-Language-in-Android">How to change the language in Android</a>
+
 # Create Lessons
 
 Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" target="_blank">Anki Desktop</a>. Anki, like TeachMeWords, is a program used for spaced repetition, but more complicated to use for the end user. It’s useful though for creating the lessons, as Anki can package all data (including mp3’s and images) into an apkg file which can be imported by TeachMeWords.
