@@ -102,9 +102,9 @@ Lessons for TeachMeWords are created in <a href="https://apps.ankiweb.net/" targ
     
     <img src="/TeachMeWords/resources/screenshots/add-pronunciation.png">
         
-1. You will be creating lessons with around 10 – 20 words. You should use a number for the lesson so that they get sorted accordingly. You can also add some text so that the student knows what it is about (if he can read). The lesson name goes into the field “tags”:
+1. You can have several lessons in one apkg file. The lessons in TeachMeWords are created automatically based on the tags the program finds. Use the same tag for all the words that belong to the same lesson. You will be creating lessons with around 10 – 20 words. You should use a number for the lesson so that they get sorted accordingly. You can also add some text so that the student knows what it is about (if he can read). The lesson name goes into the field “tags”:
 
-    <img src="/TeachMeWords/resources/screenshots/tags.png">
+    <img src="/TeachMeWords/resources/screenshots/tags.png">    
 
 1. Now you can export your lessons.
 
