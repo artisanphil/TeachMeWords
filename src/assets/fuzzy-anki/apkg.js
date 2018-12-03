@@ -298,7 +298,7 @@ function ankiBinaryToTable(ankiArray, callback) {
 			if (filenames.indexOf("collection.anki2") >= 0) {
 				//var plain = unzip.decompress("collection.anki2");
 				//zip.unzip("/sdcard/Download/unzipped/collection.anki2", "/sdcard/Download/unzipped/collection", function(x, options){
-				document.getElementById("importMessage").innerHTML = this.translate.instant('Importing');
+				document.getElementById("importMessage").innerHTML = "Importing"; //this.translate.instant('Importing');
 
 				getFileText(unzipDir + "/collection.anki2", "binary", function(plain) {
 
