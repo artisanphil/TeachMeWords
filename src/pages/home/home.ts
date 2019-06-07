@@ -62,6 +62,8 @@ export class HomePage {
       }
     }
     
+    this.lessonButtons.sort(function(a,b) {return a.lessonName > b.lessonName;});
+    
     lw.db.loadWords(wordlist);
     
   }
